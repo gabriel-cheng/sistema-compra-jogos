@@ -54,10 +54,6 @@ $yarn dev
 
 * **Gabriel Carvalho** - *Desenvolvedor FullStack*
 
-<img align="center" width="30px" src="https://cdn-icons-png.flaticon.com/512/174/174857.png">
-    <a href="https://www.linkedin.com/in/gabriel-henrique-ita/">LinkedIn</a>
-</img>
-<br><br>
-<img align="center" width="30px" src="https://cdn-icons-png.flaticon.com/512/25/25231.png">
-    <a href="">GitHub</a>
-</img>
+<a href="https://www.linkedin.com/in/gabriel-henrique-ita/">
+    <img align="center" width="90px" src="https://cdn-icons-png.flaticon.com/512/174/174857.png">&#10;&#10;Acessar linkedin</img>
+</a>
