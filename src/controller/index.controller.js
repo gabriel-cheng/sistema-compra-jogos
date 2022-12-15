@@ -1,14 +1,29 @@
 const GameconUsers = require("../models/GameconUsers.model");
 const GameconGames = require("../models/GameconGames.model");
-const GameconCart = require("../models/GameconCart.model");
 const bcrypt = require("bcrypt");
 
 module.exports = {
+    deleteGame: async(req, res) => {
+        const id = req.params.id;
+        const gameFinded = await GameconGames.findById(id);
+
+        if(!id || !gameFinded) {
+            res.status(400).json({Message: "Game não encontrado!"});
+            return;
+        }
+
+        try {
+            await GameconGames.deleteOne(gameFinded);
+
+            res.status(200).json({Message: "O game foi deletado com sucesso!"});
+        } catch(err) {
+            res.status(500).json({Message: "Aconteceu um erro interno no servidor, tente novamente mais tarde."});
+        }
+    },
     deleteUser: async(req, res) => {
         const id = req.params.id;
         const userFinded = await GameconUsers.findById(id);
 
-        await GameconUsers.deleteOne(userFinded);
 
         if(!id || !userFinded) {
             res.status(400).json({Message: "Usuário não encontrado!"});
@@ -16,42 +31,9 @@ module.exports = {
         }
 
         try {
+            await GameconUsers.deleteOne(userFinded);
+
             res.status(200).json({Message: "O usuário foi deletado com sucesso!"});
-        } catch(err) {
-            res.status(500).json({Message: "Aconteceu um erro interno no servidor, tente novamente mais tarde."});
-        }
-    },
-    registerNewCart: async(req, res) => {
-        const { gameName, gamePlatform, gameQuantity, gameValue } = req.body;
-
-        if(!gameName) {
-            res.status(400).json({Message: "O nome do game é obrigatório!"});
-            return;
-        }
-        if(!gamePlatform) {
-            res.status(400).json({Message: "É preciso informar uma plataforma!"});
-            return;
-        }
-        if(!gameQuantity) {
-            res.status(400).json({Message: "É preciso informar a quantidade!"});
-            return;
-        }
-        if(!gameValue) {
-            res.status(400).json({Message: "O valor do game é obrigatório!"});
-            return;
-        }
-
-        const newCart = {
-            gameName,
-            gamePlatform,
-            gameQuantity,
-            gameValue
-        };
-
-        try {
-            await GameconCart.create(newCart);
-
-            res.status(201).json({Message: "Usuário criado com sucesso!", newCart});
         } catch(err) {
             res.status(500).json({Message: "Aconteceu um erro interno no servidor, tente novamente mais tarde."});
         }
@@ -181,15 +163,6 @@ module.exports = {
 
         try {
             res.status(200).json(allGamesFinded);
-        } catch(err) {
-            res.status(500).json({Message: "Aconteceu um erro interno no servidor, tente novamente mais tarde."});
-        }
-    },
-    findCart: async(req, res) => {
-        const allCartItemsFinded = await GameconCart.find();
-
-        try {
-            res.status(200).json(allCartItemsFinded);
         } catch(err) {
             res.status(500).json({Message: "Aconteceu um erro interno no servidor, tente novamente mais tarde."});
         }
