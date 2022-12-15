@@ -11,6 +11,5 @@
 <style scoped>
   h1 {
     color: #000;
-    font-family: Arial, Helvetica, sans-serif
   }
 </style>
