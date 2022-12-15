@@ -1,4 +1,4 @@
-# SISTEMA DE VENDA DE JOGOS FULLSTACK
+# SISTEMA DE COMPRA DE JOGOS FULLSTACK
 
 O projeto se trata de um sistema de venda de jogos (e-commerce de pequeno porte), que possui uma estrutura de Backend e Frontend. O Backend, desenvolvido com Node.js, será a parte responsável por gerenciar o *server-side*, efetuando queries no Banco de Dados, gerenciando rotas de acesso a *endpoints* e manipulando dados do usuario. O Frontend, desevolvido com Vue.js, será o responsável por interagir com o Backend e oferecer ao usuário uma experiência agradável e intuitiva através de interfaces intuitivas e bem estruturadas.
 
